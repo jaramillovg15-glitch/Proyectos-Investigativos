@@ -1,3 +1,0 @@
-<img src="img/realmadrid.jpg" alt="Real Madrid">
-<img src="img/barcelona.jpg" alt="Barcelona">
-<img src="img/ecuador.jpg" alt="Ecuador">

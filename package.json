@@ -1,0 +1,26 @@
+{
+  "name": "jerseys-de-futbol",
+  "version": "1.0.0",
+  "description": "💻 Estudiante de Ciencias de la Computación.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaramillovg15-glitch/Proyectos-Investigativos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jaramillovg15-glitch/Proyectos-Investigativos/issues"
+  },
+  "homepage": "https://github.com/jaramillovg15-glitch/Proyectos-Investigativos#readme",
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}

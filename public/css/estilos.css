@@ -1,0 +1,428 @@
+:root {
+    --azul: #1FA2FF;
+    --morado: #8A4DFF;
+    --rosa: #FF2D95;
+    --azul-btn: #0F6FE0;
+    --morado-btn: #7B3FE4;
+    --rosa-btn: #D6207F;
+    --degradado: linear-gradient(90deg, var(--azul), var(--morado), var(--rosa));
+    --degradado-btn: linear-gradient(90deg, var(--azul-btn), var(--morado-btn), var(--rosa-btn));
+    --negro: #000000;
+    --superficie: #0E0F1A;
+    --borde: #262840;
+    --texto-suave: #B8BBD6;
+    --blanco: #FFFFFF;
+    --titulos: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --texto: 'Poppins', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--texto);
+    background: var(--negro);
+    color: var(--blanco);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--titulos); line-height: 1.1; margin: 0 0 .5em; }
+h2 { font-size: 2.3rem; text-align: center; margin-bottom: 1.2em; }
+
+a { color: inherit; text-decoration: none; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid var(--blanco);
+    outline-offset: 2px;
+}
+
+/* =====================================================
+   ANIMACIONES: pasos de cada movimiento (@keyframes)
+   ===================================================== */
+@keyframes subir {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+@keyframes brillo {
+    0%, 100% { filter: drop-shadow(0 0 14px rgba(31, 162, 255, .35)); }
+    50%      { filter: drop-shadow(0 0 30px rgba(255, 45, 149, .55)); }
+}
+
+@keyframes rebote {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+/* ---------- Header ---------- */
+header.header {
+    background: var(--negro);
+    border-bottom: 2px solid transparent;
+    border-image: var(--degradado) 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 5%;
+    flex-wrap: wrap;
+}
+
+.logo a {
+    font-family: var(--titulos);
+    font-size: 1.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    background: var(--degradado);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.buscador { display: flex; flex: 1; max-width: 420px; min-width: 220px; }
+
+.buscador input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--borde);
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+    background: var(--superficie);
+    color: var(--blanco);
+    font-family: var(--texto);
+}
+
+.buscador input::placeholder { color: var(--texto-suave); }
+
+.buscador button {
+    background: var(--degradado-btn);
+    background-size: 200% 100%;
+    color: var(--blanco);
+    border: 0;
+    padding: 0 18px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-position .5s ease;
+}
+
+.buscador button:hover { background-position: 100% 0; }
+
+.acciones { display: flex; gap: 22px; }
+.acciones a { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.acciones a:hover { color: var(--azul); }
+
+#contador-carrito {
+    background: var(--rosa-btn);
+    color: var(--blanco);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: inline-grid;
+    place-items: center;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+/* El contador rebota al sumar una camiseta (lo activa animaciones.js) */
+#contador-carrito.rebote { animation: rebote .4s ease; }
+
+/* ---------- Menu: la línea crece desde el centro ---------- */
+nav.menu {
+    background: var(--superficie);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 5%;
+}
+
+nav.menu a {
+    position: relative;
+    padding: 14px 22px;
+    font-weight: 500;
+    color: var(--texto-suave);
+    transition: color .2s;
+}
+
+nav.menu a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: var(--degradado);
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+nav.menu a:hover { color: var(--blanco); }
+nav.menu a:hover::after,
+nav.menu a:focus-visible::after { width: 70%; }
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 70px 5%;
+    background:
+        radial-gradient(ellipse at 15% 100%, rgba(31, 162, 255, .22), transparent 50%),
+        radial-gradient(ellipse at 90% 0%, rgba(255, 45, 149, .22), transparent 50%),
+        var(--negro);
+    border-bottom: 3px solid transparent;
+    border-image: var(--degradado) 1;
+}
+
+.hero-contenido { max-width: 600px; }
+
+/* El texto de la portada entra uno por uno */
+.hero-contenido > * { animation: subir .7s ease backwards; }
+.hero-contenido > :nth-child(1) { animation-delay: .10s; }
+.hero-contenido > :nth-child(2) { animation-delay: .25s; }
+.hero-contenido > :nth-child(3) { animation-delay: .40s; }
+.hero-contenido > :nth-child(4) { animation-delay: .55s; }
+
+.hero .subtitulo { font-weight: 600; color: var(--azul); margin: 0 0 10px; }
+
+.hero h1 { font-size: clamp(3rem, 7vw, 5.2rem); font-weight: 800; }
+
+.hero-contenido > p:not(.subtitulo) { color: var(--texto-suave); }
+
+/* El logo flota y brilla */
+.hero-logo {
+    width: min(380px, 40vw);
+    height: auto;
+    flex-shrink: 0;
+    animation: flotar 6s ease-in-out infinite, brillo 4s ease-in-out infinite;
+}
+
+.hero-botones { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+
+.btn {
+    display: inline-block;
+    background: var(--degradado-btn);
+    background-size: 200% 100%;
+    color: var(--blanco);
+    font-weight: 600;
+    padding: 12px 26px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: transform .2s ease, background-position .5s ease;
+}
+
+.btn:hover { transform: translateY(-2px); background-position: 100% 0; }
+
+.btn-secundario { background: transparent; border-color: var(--morado); }
+.btn-secundario:hover { background: var(--superficie); }
+
+/* ---------- Categorias ---------- */
+.categorias, .productos { padding: 70px 5%; }
+
+.contenedor-categorias, .contenedor-productos {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mensaje { grid-column: 1 / -1; text-align: center; color: var(--texto-suave); }
+
+.categoria {
+    padding: 28px 22px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-top: 3px solid transparent;
+    border-image: var(--degradado) 1;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.categoria i { font-size: 1.8rem; color: var(--azul); margin-bottom: 12px; }
+.categoria h3 { font-size: 1.6rem; }
+.categoria p { margin: 0; color: var(--texto-suave); }
+
+/* ---------- Productos ---------- */
+.productos { background: var(--superficie); }
+
+.producto {
+    border: 1px solid var(--borde);
+    padding: 14px;
+    text-align: center;
+    background: var(--negro);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* Las tarjetas se elevan con un resplandor al pasar el cursor */
+.categoria:hover, .producto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(138, 77, 255, .28);
+}
+
+.producto img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--borde);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.producto h3 { font-size: 1.4rem; }
+
+.precio { font-weight: 700; color: var(--azul); font-size: 1.2rem; margin: 0 0 12px; }
+
+.producto button {
+    width: 100%;
+    background: var(--degradado-btn);
+    background-size: 200% 100%;
+    color: var(--blanco);
+    border: 0;
+    padding: 11px;
+    font-family: var(--texto);
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform .2s ease, background-position .5s ease;
+}
+
+.producto button:hover { transform: translateY(-2px); background-position: 100% 0; }
+
+/* ---------- Beneficios ---------- */
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+    text-align: center;
+    background: var(--negro);
+}
+
+.beneficio i { font-size: 1.8rem; color: var(--morado); margin-bottom: 8px; }
+.beneficio h3 { font-size: 1.3rem; margin: 0; }
+
+/* ---------- Footer ---------- */
+footer {
+    background: var(--negro);
+    border-top: 2px solid transparent;
+    border-image: var(--degradado) 1;
+    padding: 50px 5% 20px;
+}
+
+.footer-contenido {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+footer h3 { font-size: 1.5rem; }
+footer p { margin: 0 0 6px; color: var(--texto-suave); }
+footer i { font-size: 1.4rem; margin-right: 14px; color: var(--azul); transition: color .2s; }
+footer a:hover i { color: var(--rosa); }
+
+footer hr { border: 0; border-top: 1px solid var(--borde); margin: 30px 0 16px; }
+
+.copyright { text-align: center; font-size: .85rem; }
+
+/* ---------- Aparecer al hacer scroll (lo activa animaciones.js) ---------- */
+.revelar { opacity: 0; }
+
+.revelar.visible {
+    opacity: 1;
+    animation: subir .6s ease backwards;
+    animation-delay: var(--retraso, 0ms);
+}
+
+/* ---------- Páginas internas: cabecera, talla y etiqueta de oferta ---------- */
+.cabecera-pagina {
+    text-align: center;
+    padding: 56px 5% 44px;
+    background:
+        radial-gradient(ellipse at 20% 100%, rgba(31, 162, 255, .20), transparent 55%),
+        radial-gradient(ellipse at 85% 0%, rgba(255, 45, 149, .20), transparent 55%),
+        var(--negro);
+    border-bottom: 3px solid transparent;
+    border-image: var(--degradado) 1;
+}
+
+.cabecera-pagina > * { animation: subir .7s ease backwards; }
+.cabecera-pagina > :nth-child(2) { animation-delay: .12s; }
+.cabecera-pagina > :nth-child(3) { animation-delay: .24s; }
+
+.cabecera-pagina .subtitulo { color: var(--azul); font-weight: 600; margin: 0 0 6px; }
+.cabecera-pagina h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 800; margin: 0 0 8px; }
+.cabecera-pagina p:last-child { color: var(--texto-suave); margin: 0; }
+
+nav.menu a[aria-current="page"] { color: var(--blanco); }
+nav.menu a[aria-current="page"]::after { width: 70%; }
+
+.producto { position: relative; }
+
+.etiqueta-oferta {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    background: var(--rosa-btn);
+    color: var(--blanco);
+    font-size: .75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+.selector-talla {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.selector-talla label { color: var(--texto-suave); font-size: .9rem; }
+
+.selector-talla select {
+    background: var(--superficie);
+    color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: var(--texto);
+}
+
+.producto button:disabled {
+    background: var(--borde);
+    color: var(--texto-suave);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+    .hero { flex-direction: column-reverse; padding: 50px 5%; text-align: center; }
+    .hero-botones { justify-content: center; }
+    .hero-logo { width: min(260px, 70vw); }
+    .acciones { width: 100%; justify-content: space-between; }
+}
+
+/* ---------- Respeta a quien prefiere menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .revelar { opacity: 1; }
+}
