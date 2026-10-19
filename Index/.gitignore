@@ -1,0 +1,17 @@
+# Ignorar configuraciones
+.vscode/
+.env
+
+# Ignorar dependencias
+node_modules/
+package.json
+package-lock.json
+server.js
+
+# Ignorar compilados
+dist/
+public/
+
+# Ignorar temporales
+*.log
+*.tmp
