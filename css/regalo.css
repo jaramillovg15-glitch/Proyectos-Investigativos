@@ -1,0 +1,760 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #140d12;
+    color: #fff5f3;
+    overflow-x: hidden;
+}
+
+.oculto { display: none !important; }
+
+/* ===== Corazones flotando ===== */
+.corazones {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.corazones span {
+    position: absolute;
+    bottom: -40px;
+    color: #ee9aa6;
+    opacity: 0;
+    animation: subir linear forwards;
+}
+
+@keyframes subir {
+    0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.55; }
+    50%  { transform: translate(24px, -55vh) rotate(12deg); }
+    90%  { opacity: 0.35; }
+    100% { transform: translate(-18px, -115vh) rotate(-10deg); opacity: 0; }
+}
+
+main, .inicio, .visor { position: relative; z-index: 1; }
+
+/* ===== Pantalla de inicio ===== */
+.inicio {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.inicio > * { animation: entrar 1s ease both; }
+.inicio > :nth-child(2) { animation-delay: 0.25s; }
+.inicio > :nth-child(3) { animation-delay: 0.5s; }
+.inicio > :nth-child(4) { animation-delay: 0.75s; }
+
+@keyframes entrar {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.etiqueta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ee9aa6;
+    text-align: center;
+}
+
+h1 { font-size: clamp(38px, 10vw, 64px); font-weight: normal; }
+h2 { font-size: clamp(26px, 6vw, 36px); font-weight: normal; text-align: center; }
+.sub { font-size: 18px; line-height: 1.6; max-width: 420px; }
+
+.boton {
+    margin-top: 10px;
+    padding: 14px 34px;
+    border: 0;
+    border-radius: 30px;
+    background: #ee9aa6;
+    color: #140d12;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    animation: entrar 1s ease 0.75s both, latir 1.8s ease-in-out 2s infinite;
+}
+
+@keyframes latir {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(238, 154, 166, 0.55); transform: scale(1); }
+    50%      { box-shadow: 0 0 0 16px rgba(238, 154, 166, 0); transform: scale(1.05); }
+}
+
+/* ===== Secciones ===== */
+.seccion {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+/* Aparecer al bajar */
+.aparece {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.aparece.visto { opacity: 1; transform: none; }
+
+/* ===== Polaroids ===== */
+.fotos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(6px, 1.6vw, 22px);
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* La galería usa más ancho para que las 5 fotos quepan bien */
+#contenido .seccion:first-child { max-width: 1100px; }
+
+.polaroid {
+    padding: 8px 8px 30px;
+    background: #fff5f3;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.2, 1.2, .4, 1),
+                rotate 0.4s ease, scale 0.4s ease;
+}
+
+.polaroid:nth-child(4n+1) { rotate: -3deg; }
+.polaroid:nth-child(4n+2) { rotate: 2deg; }
+.polaroid:nth-child(4n+3) { rotate: -1deg; }
+.polaroid:nth-child(4n)   { rotate: 3deg; }
+
+.polaroid.aparece { transform: translateY(-70px) scale(0.9); }
+.polaroid.aparece.visto {
+    transform: none;
+    animation: mecer 5s ease-in-out 1.5s infinite;
+}
+.polaroid:nth-child(even).visto { animation-delay: 2.4s; }
+.polaroid:nth-child(3n).visto   { animation-duration: 6s; }
+
+@keyframes mecer {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -7px; }
+}
+
+.polaroid:hover { rotate: 0deg; scale: 1.06; z-index: 2; }
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.manuscrito {
+    font-family: "Caveat", cursive;
+    font-size: 28px;
+    color: #ee9aa6;
+    text-align: center;
+}
+.manuscrito.grande { font-size: 38px; }
+
+/* ===== Reproductor ===== */
+.reproductor {
+    width: min(100%, 380px);
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(238, 154, 166, 0.4);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+/* Disco que gira mientras suena */
+.portada-cancion {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 50%;
+    border: 3px solid rgba(238, 154, 166, 0.6);
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.05);
+    animation: girar 14s linear infinite;
+    animation-play-state: paused;
+}
+.reproductor.sonando .portada-cancion { animation-play-state: running; }
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+.reproductor h3 { font-size: 22px; font-weight: normal; }
+.artista { font-size: 15px; color: #ee9aa6; }
+
+.barra {
+    width: 100%;
+    height: 6px;
+    margin-top: 8px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+}
+.progreso { width: 0; height: 100%; border-radius: 3px; background: #ee9aa6; }
+
+.tiempos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.play {
+    width: 64px;
+    height: 64px;
+    border: 0;
+    border-radius: 50%;
+    background: #ee9aa6;
+    color: #140d12;
+    font-size: 24px;
+    cursor: pointer;
+}
+.reproductor.sonando .play { animation: latir 1.6s ease-in-out infinite; }
+
+/* ===== Carta ===== */
+.carta {
+    width: min(100%, 440px);
+    padding: 34px 28px;
+    background: #f6e4dc;
+    color: #4a2a30;
+    border-radius: 4px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    rotate: -1deg;
+    font-family: "Caveat", cursive;
+    font-size: clamp(22px, 5.4vw, 26px);
+    line-height: 1.5;
+    text-align: center;
+}
+.carta p + p { margin-top: 14px; }
+.carta .firma { margin-top: 22px; font-weight: 600; }
+
+/* ===== Cierre ===== */
+.cierre { padding-bottom: 90px; }
+.cierre p:first-child {
+    font-size: clamp(17px, 4.4vw, 20px);
+    line-height: 1.9;
+    text-align: center;
+}
+
+/* ===== Foto en grande ===== */
+.visor {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(10, 6, 9, 0.94);
+    cursor: pointer;
+    animation: entrar 0.35s ease both;
+}
+.visor img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .aparece,
+    .polaroid.aparece { opacity: 1; transform: none; }
+}
+
+/* ===== Foto en grande ===== */
+.visor {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(10, 6, 9, 0.94);
+    cursor: pointer;
+    animation: entrar 0.35s ease both;
+}
+.visor img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
+
+.visor-contenido {
+    width: min(100%, 940px);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.visor-contenido img {
+    max-width: 100%;
+    max-height: 56vh;
+    object-fit: contain;
+    border: 10px solid #fff5f3;
+    border-radius: 4px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.7);
+    rotate: -1.5deg;
+}
+
+.visor-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+}
+
+.visor-texto h3 {
+    font-size: clamp(28px, 7vw, 44px);
+    font-weight: normal;
+    font-style: italic;
+    line-height: 1.15;
+    color: #ee9aa6;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.visor-texto .fecha { color: #fff5f3; letter-spacing: 3px; }
+
+#visor-frase {
+    max-width: 480px;
+    font-size: clamp(17px, 4.4vw, 20px);
+    line-height: 1.8;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 800px) {
+    .visor-contenido { flex-direction: row; gap: 48px; }
+    .visor-contenido img { max-width: 50%; max-height: 78vh; }
+    .visor-texto { align-items: flex-start; text-align: left; }
+}
+
+.visor-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(238, 154, 166, 0.6);
+    border-radius: 50%;
+    background: rgba(20, 13, 18, 0.7);
+    color: #ee9aa6;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.cerrar { position: fixed; top: 16px; right: 16px; }
+
+.visor-nav {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    gap: 20px;
+}
+
+/* ===== Canción, carta y cierre en horizontal ===== */
+#contenido {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+/* Las fotos ocupan toda la fila de arriba */
+#contenido .seccion:first-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* Las otras tres secciones, una al lado de la otra, ocupando toda la pantalla */
+#contenido .seccion:not(:first-child) {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    justify-content: center;
+    padding: 40px clamp(16px, 3vw, 48px);
+}
+
+/* En el celular se apilan una debajo de otra */
+@media (max-width: 900px) {
+    #contenido { grid-template-columns: 1fr; }
+    #contenido .seccion:not(:first-child) { min-height: auto; padding: 56px 20px; }
+}
+
+/* ===== Fondo con la foto de portada (queda detrás de los corazones) ===== */
+body {
+    background: transparent;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(to bottom, rgba(20, 13, 18, 0.55), rgba(20, 13, 18, 0.88)),
+        url("../img/Portada.jpeg") center 10% / cover no-repeat #140d12;
+}
+/* Que el texto se lea bien encima de la foto */
+.inicio h1,
+.inicio .etiqueta,
+.inicio .sub,
+#contenido .seccion:first-child h2,
+#contenido .seccion:first-child .etiqueta {
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+/* ===== Pinzas en cada foto ===== */
+.polaroid {
+    position: relative;
+    overflow: visible;
+    --pinza: #d9a066; /* madera */
+}
+.polaroid:nth-child(3n+2) { --pinza: #ee9aa6; } /* rosa */
+.polaroid:nth-child(3n)   { --pinza: #f3dcc8; } /* crema */
+
+/* Cuerpo de la pinza */
+.polaroid::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    translate: -50% 0;
+    width: 15px;
+    height: 34px;
+    z-index: 3;
+    border-radius: 5px 5px 3px 3px;
+    background: linear-gradient(90deg,
+        var(--pinza) 0 42%,
+        rgba(0, 0, 0, 0.3) 42% 58%,
+        var(--pinza) 58% 100%);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Resorte metálico */
+.polaroid::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    translate: -50% 0;
+    width: 21px;
+    height: 5px;
+    z-index: 4;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #d7dce0, #8d949b);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* En celular las pinzas un poco más pequeñas */
+@media (max-width: 600px) {
+    .polaroid::before { width: 11px; height: 26px; top: -11px; }
+    .polaroid::after  { width: 16px; height: 4px; top: 4px; }
+}
+
+/* ===== Hilos metálicos colgando ===== */
+.hilo {
+    position: absolute;
+    left: 15%;
+    width: 70%;
+    top: -50px;
+    height: 50px;
+    z-index: 2;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M50 0 L0 100 M50 0 L100 100' stroke='%238d949b' stroke-width='2.2' fill='none' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M50 0 L0 100 M50 0 L100 100' stroke='%23e6eaee' stroke-width='1' fill='none' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+/* Argolla metálica donde se juntan los hilos */
+.hilo::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    translate: -50% 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 2px solid #c4cacf;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), inset 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Espacio para que los hilos de la segunda fila no pisen la primera */
+.fotos {
+    row-gap: clamp(56px, 8vw, 78px);
+    padding-top: 44px;
+}
+
+/* ===== Final: carta + Feliz 1 año + música ===== */
+.final {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 1100px;
+    padding: 60px 20px 90px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 5vw, 70px);
+    align-items: center;
+}
+
+/* Carta en hoja de cuaderno */
+.nota {
+    position: relative;
+    padding: 34px 28px 34px 66px;
+    background-color: #efe2da;
+    background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgba(120, 90, 100, 0.25) 31px 32px);
+    background-position: 0 34px;
+    color: #4a2a30;
+    font-family: "Caveat", cursive;
+    font-size: clamp(20px, 2.4vw, 24px);
+    line-height: 32px;
+    text-align: left;
+    rotate: -2deg;
+    border-radius: 3px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
+}
+.nota::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 46px;
+    width: 1px;
+    background: rgba(200, 90, 90, 0.55);
+}
+.nota p { margin: 0; }
+.nota .aparte { margin-top: 32px; }
+.nota-corazon {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    font-size: 34px;
+    rotate: 10deg;
+}
+
+/* Feliz 1 año */
+.feliz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+}
+.final .feliz-titulo {
+    font-family: "Caveat", cursive;
+    font-weight: 600;
+    font-size: clamp(54px, 9vw, 100px);
+    line-height: 0.95;
+    color: #fff5f3;
+    rotate: -4deg;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
+}
+.feliz-titulo span { color: #ee9aa6; }
+.feliz-titulo::after {
+    content: "";
+    display: block;
+    width: 80%;
+    height: 6px;
+    margin: 12px auto 0;
+    border-radius: 50%;
+    background: #f4b6c4;
+    rotate: -3deg;
+}
+.feliz-texto {
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+}
+.feliz-corazon { font-size: 30px; color: #ee9aa6; }
+
+/* Música abajo, en tarjeta compacta */
+.final .reproductor {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 480px);
+    display: grid;
+    grid-template-columns: 72px 1fr 56px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    text-align: left;
+    background: rgba(20, 13, 18, 0.65);
+}
+.final .portada-cancion {
+    width: 72px;
+    height: 72px;
+    border-width: 2px;
+    box-shadow: none;
+}
+.final .info { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.final .reproductor h3 { font-size: 17px; }
+.final .artista { font-size: 14px; }
+.final .play { width: 52px; height: 52px; font-size: 20px; }
+
+.sigue {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+.sigue span { color: #ee9aa6; font-size: 20px; }
+
+/* En celular todo se apila */
+@media (max-width: 900px) {
+    .final { grid-template-columns: 1fr; padding: 40px 16px 70px; }
+    .nota { padding: 30px 20px 30px 54px; rotate: -1deg; }
+    .nota::before { left: 38px; }
+}
+
+/* ===== Foto grande: estilo flores (sin fecha) ===== */
+.visor-contenido img {
+    border-width: 10px 10px 38px;
+    rotate: -3deg;
+}
+
+.visor-texto {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    min-height: 280px;
+    text-align: center;
+}
+.visor-cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+#visor-frase {
+    max-width: 340px;
+    font-family: "Caveat", cursive;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #f4b6c4;
+    white-space: pre-line; /* respeta los saltos de línea que escribas con \n */
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+.visor-corazon { font-size: 28px; color: #f4b6c4; }
+
+.flor-grande { width: 64px; height: 150px; flex-shrink: 0; }
+.flor-esquina {
+    position: absolute;
+    right: -18px;
+    bottom: -30px;
+    width: 70px;
+    height: 160px;
+    rotate: 35deg;
+    opacity: 0.7;
+}
+.vh { position: absolute; color: #ee9aa6; opacity: 0.8; }
+.vh1 { top: 8px; right: 12px; font-size: 18px; rotate: 12deg; }
+.vh2 { top: 34px; right: -6px; font-size: 12px; }
+
+/* En celular: texto debajo de la foto y sin ramo grande */
+@media (max-width: 799px) {
+    .visor-texto { flex-direction: column; min-height: 0; }
+    .flor-grande, .flor-esquina { display: none; }
+}
+
+/* ===== Textos largos en la foto grande ===== */
+#visor-frase.largo {
+    max-width: 420px;
+    font-size: clamp(22px, 3.2vw, 30px);
+    line-height: 1.25;
+}
+#visor-frase.muy-largo {
+    max-width: 460px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 8px;
+    font-size: clamp(19px, 2.6vw, 24px);
+    line-height: 1.3;
+}
+
+/* Si el texto no cabe en el celular, la pantalla se puede deslizar */
+.visor { overflow-y: auto; }
+.visor-contenido { padding-bottom: 80px; }
+
+/* ===== Título manuscrito debajo de cada foto ===== */
+.polaroid { padding: 8px 8px 10px; text-align: center; }
+
+.pie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+    color: #4a2a30;
+    line-height: 1.1;
+}
+
+.polaroid .pie b {
+    font-family: "Caveat", cursive;
+    font-weight: 600;
+    font-size: clamp(16px, 2.2vw, 24px);
+    overflow-wrap: anywhere;
+}
+
+/* ===== Transición al pasar de foto ===== */
+.sale-sig  { animation: sale-izq 0.25s ease forwards; }
+.sale-ant  { animation: sale-der 0.25s ease forwards; }
+.entra-sig { animation: entra-der 0.45s cubic-bezier(.2, .8, .2, 1) both; }
+.entra-ant { animation: entra-izq 0.45s cubic-bezier(.2, .8, .2, 1) both; }
+
+@keyframes sale-izq  { to   { opacity: 0; transform: translateX(-60px); } }
+@keyframes sale-der  { to   { opacity: 0; transform: translateX(60px); } }
+@keyframes entra-der { from { opacity: 0; transform: translateX(60px); }  to { opacity: 1; transform: none; } }
+@keyframes entra-izq { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
+
+/* ===== Video final ===== */
+.video-final {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 760px;
+    padding: 20px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+}
+.video-marco {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid rgba(238, 154, 166, 0.4);
+    border-radius: 18px;
+    background: rgba(20, 13, 18, 0.65);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
+}
+.video-marco video {
+    display: block;
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 12px;
+    background: #000;
+}

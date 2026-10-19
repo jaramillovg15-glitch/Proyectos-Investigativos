@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa para mi Sonita ❤️</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+    <main class="portada">
+        <div class="fondo-oscuro"></div>
+
+        <section class="contenido">
+            <p class="etiqueta">PARA EL AMOR DE MI VIDA</p>
+
+            <div class="corazon">♥</div>
+
+            <h1>
+                Un Año Contigo,<br>
+                <span>Mil Razones para Quedarme</span>
+            </h1>
+
+            <p class="mensaje">
+                Te he estado preparando una sorpresa.
+                Sé que es un pequeño regalo, pero lo hice
+                con todo mi corazón. Disfrútalo mucho, mi amor.
+            </p>
+
+            <div class="separador">
+                <span>♡</span>
+            </div>
+
+            <div class="t-onda">
+                <svg class="ondas" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="gOnda" x1="0" x2="1" y1="0" y2="0">
+                            <stop offset="0" stop-color="#f4b6c4" stop-opacity="0"/>
+                            <stop offset=".5" stop-color="#f4b6c4" stop-opacity=".85"/>
+                            <stop offset="1" stop-color="#f4b6c4" stop-opacity="0"/>
+                        </linearGradient>
+                        <filter id="brillo"><feGaussianBlur stdDeviation="5"/></filter>
+                    </defs>
+                    <g>
+                        <path d="M-50 340 C150 250 300 390 450 305 S700 210 860 250" stroke="url(#gOnda)" stroke-width="7" fill="none" filter="url(#brillo)"/>
+                        <path d="M-50 340 C150 250 300 390 450 305 S700 210 860 250" stroke="url(#gOnda)" stroke-width="1.5" fill="none"/>
+                        <path d="M-50 360 C180 275 330 405 480 325 S720 225 860 270" stroke="url(#gOnda)" stroke-width="1" fill="none" opacity=".7"/>
+                    </g>
+                    <g>
+                        <path d="M860 60 C700 130 560 30 400 100 S150 150 -50 105" stroke="url(#gOnda)" stroke-width="6" fill="none" filter="url(#brillo)" opacity=".7"/>
+                        <path d="M860 60 C700 130 560 30 400 100 S150 150 -50 105" stroke="url(#gOnda)" stroke-width="1.2" fill="none"/>
+                    </g>
+                </svg>
+
+                <span class="icono-candado">
+                    <svg width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="Sobre con sello de corazón">
+                        <rect x="9" y="17" width="54" height="38" rx="5" fill="#2a1d24" stroke="#f4b6c4" stroke-width="2"/>
+                        <path d="M10 20 36 40 62 20" fill="none" stroke="#f4b6c4" stroke-width="2"/>
+                        <circle cx="36" cy="40" r="8" fill="#ee9aa6"/>
+                        <path d="M36 45c-4-3-5-5-5-6.5 0-1.5 1-2.5 2.3-2.5.9 0 1.9.5 2.7 1.5.8-1 1.8-1.5 2.7-1.5 1.3 0 2.3 1 2.3 2.5 0 1.5-1 3.5-5 6.5z" fill="#140d12"/>
+                    </svg>
+                </span>
+
+                <p class="t-frase">Mientras más lo esperas, menos te lo imaginas...</p>
+
+                <div class="t-anillos" id="contador">
+                    <div class="anillo">
+                        <svg viewBox="0 0 100 100"><circle class="pista" cx="50" cy="50" r="46"/><circle class="avance" id="anillo-meses" cx="50" cy="50" r="46" pathLength="100" transform="rotate(-90 50 50)"/></svg>
+                        <div class="anillo-dato"><span class="anillo-num" id="meses">00</span><span class="anillo-uni">Meses</span></div>
+                    </div>
+                    <div class="anillo">
+                        <svg viewBox="0 0 100 100"><circle class="pista" cx="50" cy="50" r="46"/><circle class="avance" id="anillo-dias" cx="50" cy="50" r="46" pathLength="100" transform="rotate(-90 50 50)"/></svg>
+                        <div class="anillo-dato"><span class="anillo-num" id="dias">00</span><span class="anillo-uni">Días</span></div>
+                    </div>
+                    <div class="anillo">
+                        <svg viewBox="0 0 100 100"><circle class="pista" cx="50" cy="50" r="46"/><circle class="avance" id="anillo-horas" cx="50" cy="50" r="46" pathLength="100" transform="rotate(-90 50 50)"/></svg>
+                        <div class="anillo-dato"><span class="anillo-num" id="horas">00</span><span class="anillo-uni">Horas</span></div>
+                    </div>
+                    <div class="anillo">
+                        <svg viewBox="0 0 100 100"><circle class="pista" cx="50" cy="50" r="46"/><circle class="avance" id="anillo-minutos" cx="50" cy="50" r="46" pathLength="100" transform="rotate(-90 50 50)"/></svg>
+                        <div class="anillo-dato"><span class="anillo-num" id="minutos">00</span><span class="anillo-uni">Min</span></div>
+                    </div>
+                    <div class="anillo">
+                        <svg viewBox="0 0 100 100"><circle class="pista" cx="50" cy="50" r="46"/><circle class="avance" id="anillo-segundos" cx="50" cy="50" r="46" pathLength="100" transform="rotate(-90 50 50)"/></svg>
+                        <div class="anillo-dato"><span class="anillo-num" id="segundos">00</span><span class="anillo-uni">Seg</span></div>
+                    </div>
+                </div>
+
+                <p class="t-manuscrito">Cada momento contigo vale la pena</p>
+                <div class="t-sep"><span>♥</span></div>
+                <span class="t-fecha">31 · OCTUBRE · 2026</span>
+            </div>
+
+            <p class="final">
+                Con amor, para mi persona favorita. ♡
+            </p>
+        </section>
+
+        <div class="decoracion decoracion-uno">♡</div>
+        <div class="decoracion decoracion-dos">♥</div>
+    </main>
+
+    <script src="../jss/contador.js"></script>
+    <script src="../jss/script.js"></script>
+</body>
+</html>

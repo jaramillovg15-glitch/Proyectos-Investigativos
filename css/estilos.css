@@ -1,0 +1,354 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #140d12;
+    color: #fff5f3;
+}
+
+/* ===== Portada con foto de fondo ===== */
+.portada {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;      /* texto abajo; cámbialo a center si lo quieres en medio */
+    overflow: hidden;
+    padding: 40px 16px;
+
+    background-image: url("../img/Portada.jpeg");
+    background-size: cover;
+    background-position: center top;   /* así no se cortan las caras */
+    background-repeat: no-repeat;
+    background-color: #140d12;
+}
+
+/* Capa oscura para leer el texto */
+.fondo-oscuro {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(20, 13, 18, 0.15) 0%,
+        rgba(20, 13, 18, 0.35) 45%,
+        rgba(20, 13, 18, 0.92) 100%
+    );
+}
+
+/* ===== Contenido ===== */
+.contenido {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+}
+
+.etiqueta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(13px, 3.4vw, 17px);
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ed4978;
+}
+
+.corazon {
+    font-size: 28px;
+    color: #eb698e;
+}
+
+h1 {
+    font-size: clamp(34px, 8vw, 58px);
+    font-weight: normal;
+    line-height: 1.15;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+h1 span {
+    font-style: italic;
+    color: #f4b6c8;
+}
+
+.mensaje {
+    max-width: 560px;
+    font-size: clamp(16px, 3.8vw, 19px);
+    line-height: 1.8;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== Separador con corazón ===== */
+.separador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 260px;
+    color: #f4b6c8;
+}
+
+.separador::before,
+.separador::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(244, 182, 200, 0.6);
+}
+
+/* ===== Caja del candado ===== */
+.candado {
+    width: min(94vw, 680px);
+    padding: 26px 20px;
+    border: 1px solid rgba(244, 182, 200, 0.45);
+    border-radius: 22px;
+    background: rgba(20, 13, 18, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.icono-candado {
+    font-size: 30px;
+}
+
+.candado p {
+    font-size: clamp(16px, 4vw, 19px);
+    line-height: 1.5;
+}
+
+.fecha {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #f4b6c8;
+}
+
+/* ===== Contador (en una sola fila) ===== */
+.contador {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: clamp(6px, 2vw, 14px);
+    width: 100%;
+    margin: 18px 0;
+}
+
+.bloque {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 130px;
+    min-height: 100px;
+    padding: 16px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(244, 182, 200, 0.35);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.numero {
+    font-size: clamp(18px, 5vw, 30px);
+    font-weight: bold;
+    line-height: 1;
+    color: #f4b6c8;
+}
+
+.unidad {
+    margin-top: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(8px, 2.4vw, 11px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff5f3;
+}
+
+.llego {
+    font-size: 22px;
+    color: #f4b6c8;
+}
+
+/* ===== Frase final ===== */
+.final {
+    font-style: italic;
+    font-size: 16px;
+    color: #fff5f3;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ===== Corazones decorativos ===== */
+.decoracion {
+    position: absolute;
+    z-index: 2;
+    color: #f4b6c8;
+    opacity: 0.55;
+    pointer-events: none;
+    animation: flotar 5s ease-in-out infinite;
+}
+
+.decoracion-uno {
+    top: 18%;
+    left: 8%;
+    font-size: 38px;
+}
+
+.decoracion-dos {
+    bottom: 22%;
+    right: 8%;
+    font-size: 30px;
+    animation-delay: 1.5s;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+}
+
+
+#meses, #dias, #horas, #minutos, #segundos {
+    font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ===== Corazones flotando (igual que en regalo) ===== */
+.corazones {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.corazones span {
+    position: absolute;
+    bottom: -40px;
+    color: #ee9aa6;
+    opacity: 0;
+    animation: subir linear forwards;
+}
+
+@keyframes subir {
+    0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.55; }
+    50%  { transform: translate(24px, -55vh) rotate(12deg); }
+    90%  { opacity: 0.35; }
+    100% { transform: translate(-18px, -115vh) rotate(-10deg); opacity: 0; }
+} 
+
+.icono-candado {
+    display: inline-block;
+    line-height: 0;
+    animation: flotar-sobre 3.5s ease-in-out infinite;
+}
+
+.icono-candado svg {
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+
+@keyframes flotar-sobre {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-6px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icono-candado { animation: none; }
+}
+
+/* ===== Contador con anillos y ondas de luz ===== */
+.t-onda {
+    position: relative;
+    overflow: hidden;
+    width: min(100%, 860px);
+    margin: 0 auto;
+    padding: 28px clamp(14px, 3vw, 34px) 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(238, 154, 166, 0.35);
+    border-radius: 24px;
+    background: rgba(20, 13, 18, 0.6);
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
+.t-onda > *:not(.ondas) { position: relative; z-index: 1; }
+
+.ondas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+.ondas g { animation: onda 9s ease-in-out infinite; }
+.ondas g:nth-of-type(2) { animation-duration: 12s; animation-direction: reverse; }
+@keyframes onda {
+    0%, 100% { transform: translateX(-14px); }
+    50%      { transform: translateX(14px); }
+}
+
+.t-frase { font-size: clamp(16px, 2.4vw, 20px); color: #fff5f3; }
+
+.t-anillos {
+    display: flex;
+    justify-content: center;
+    gap: clamp(6px, 1.6vw, 16px);
+    width: 100%;
+}
+.anillo { position: relative; width: clamp(54px, 15vw, 94px); aspect-ratio: 1; }
+.anillo svg { display: block; width: 100%; height: 100%; }
+.anillo circle { fill: none; stroke-width: 4; }
+.pista { stroke: rgba(238, 154, 166, 0.25); }
+.avance {
+    stroke: #f4b6c4;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.6s ease;
+    filter: drop-shadow(0 0 4px rgba(244, 182, 196, 0.6));
+}
+#anillo-segundos { transition: none; }
+
+.anillo-dato {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.1;
+}
+.anillo-num { font-size: clamp(17px, 4.6vw, 28px); color: #f4b6c4; }
+.anillo-uni {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(7px, 1.8vw, 10px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff5f3;
+}
+
+.t-manuscrito { font-family: "Caveat", cursive; font-size: clamp(20px, 3vw, 26px); color: #f4b6c4; }
+.t-sep { display: flex; align-items: center; gap: 12px; width: min(60%, 300px); color: #f4b6c4; }
+.t-sep::before, .t-sep::after { content: ""; flex: 1; height: 1px; background: rgba(244, 182, 196, 0.5); }
+.t-fecha { font-family: Arial, Helvetica, sans-serif; font-size: 12px; letter-spacing: 4px; color: #f4b6c4; }
+
+@media (prefers-reduced-motion: reduce) { .ondas g { animation: none; } }

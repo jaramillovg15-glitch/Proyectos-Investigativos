@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+    if (new Date() < new Date(2026, 9, 31, 0, 0, 0)) {
+        window.location.replace("index.html");
+    }
+</script>
+
+    <title>Nuestros Momentos Juntos ❤️</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">
+    <link rel="stylesheet" href="../css/regalo.css">
+</head>
+<body>
+    <section id="inicio" class="inicio">
+        <p class="manuscrito">Para El Amor de Mi Vida</p>
+        <h1>Nuestros Momentos Juntos</h1>
+        <p class="sub">Toca el botón y abre tu sorpresa.</p>
+        <button id="comenzar" class="boton">Comenzar</button>
+    </section>
+
+    <main id="contenido" class="oculto">
+        <section class="seccion">
+            <p class="manuscrito">Siempre fuimos tú y yo ♡</p>
+            <h2>Cada foto, un pedacito de nosotros</h2>
+            <div class="fotos" id="fotos"></div>
+            <p class="manuscrito">Te amo con todo mi corazón,<br>gracias por ser parte de mi vida. ♡</p>
+        </section>
+
+        <section class="final">
+            <div class="nota aparece">
+                <span class="nota-corazon">♡</span>
+                <p>Mi Sonita:</p>
+                <p>Por último, quiero que disfrutemos este día juntos, y que cada momento sea tan especial como lo son los nuestros. Espero que nuestra relación siga prosperando como siempre y, si hay alguna dificultad, siempre lo hablemos. Para mí eres lo más importante que tengo en mi vida, y así será de ahora en adelante. Ojalá en el futuro siempre esté contigo, porque no me veo con otra mujer que no seas tú.</p>
+                <p class="aparte">No olvides que todo lo que hago es por ti, porque mi amor es tan grande que me esfuerzo cada día para verte feliz.</p>
+                <p class="aparte">Te amo, hoy, mañana y siempre.</p>
+                <p class="aparte">— Gabriel ♡</p>
+            </div>
+
+            <div class="feliz aparece">
+                <h2 class="feliz-titulo">Feliz 1 año<br>mi amor <span>♡</span></h2>
+                <p class="feliz-texto">Gracias por hacerme tan feliz<br>y por quedarte.</p>
+                <p class="feliz-texto">Tú y yo, siempre.</p>
+                <span class="feliz-corazon">♡</span>
+            </div>
+
+            <div class="reproductor aparece">
+                <img class="portada-cancion" src="../img/Portada.jpeg" alt="Portada de la canción">
+                <div class="info">
+                    <h3>Risk It All</h3>
+                    <p class="artista">Bruno Mars</p>
+                    <div class="barra" id="barra"><div class="progreso" id="progreso"></div></div>
+                    <div class="tiempos"><span id="actual">0:00</span><span id="total">0:00</span></div>
+                </div>
+                <button id="play" class="play" aria-label="Reproducir o pausar">▶</button>
+            </div>
+
+            <p class="sigue aparece"><span>♫</span> Arriesgaria todo por ti...♥</p>
+        </section>
+
+                <section class="video-final aparece">
+            <p class="manuscrito">Un último detalle...</p>
+            <div class="video-marco">
+                <video id="video-final" controls playsinline preload="metadata" poster="../img/Portada.jpeg">
+                    <source src="../Video/Video.mp4" type="video/mp4">
+                    Tu navegador no puede reproducir este video.
+                </video>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Dibujos de las flores -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <g id="petalos">
+                <ellipse cx="0" cy="-6" rx="3.6" ry="5.2"/>
+                <ellipse cx="0" cy="-6" rx="3.6" ry="5.2" transform="rotate(72)"/>
+                <ellipse cx="0" cy="-6" rx="3.6" ry="5.2" transform="rotate(144)"/>
+                <ellipse cx="0" cy="-6" rx="3.6" ry="5.2" transform="rotate(216)"/>
+                <ellipse cx="0" cy="-6" rx="3.6" ry="5.2" transform="rotate(288)"/>
+                <circle r="1.8"/>
+            </g>
+        </defs>
+
+        <!-- Rosa en espiral -->
+        <symbol id="flor" viewBox="0 0 100 200">
+            <g fill="rgba(238,154,166,0.12)" stroke="#f4b6c4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M50 82 C46 106 54 136 48 192" fill="none"/>
+                <path d="M49 128 C34 126 20 114 20 98 C36 98 47 110 49 128Z"/>
+                <path d="M49 128 C40 118 31 108 23 100" fill="none" stroke-width=".8"/>
+                <path d="M51 158 C66 156 80 144 80 128 C64 128 53 140 51 158Z"/>
+                <path d="M51 158 C60 148 70 138 77 130" fill="none" stroke-width=".8"/>
+                <path d="M22 50 C16 30 30 12 50 12 C70 12 84 30 78 50 C76 70 64 82 50 82 C36 82 24 70 22 50Z"/>
+                <path d="M26 54 C32 66 40 71 50 71 C60 71 68 66 74 54" fill="none" stroke-width=".9"/>
+                <path d="M50 46 C47 42 53 39 56 43 C60 49 51 55 45 50 C38 44 44 33 54 33 C65 33 71 45 65 55 C58 66 42 65 36 55 C29 44 34 26 50 24 C68 22 78 40 72 58" fill="none"/>
+                <path d="M50 82 C42 90 34 90 28 84 C36 82 44 82 50 82Z"/>
+                <path d="M50 82 C58 90 66 90 72 84 C64 82 56 82 50 82Z"/>
+            </g>
+        </symbol>
+
+        <!-- Ramito de florecitas -->
+        <symbol id="ramo" viewBox="0 0 100 160">
+            <g fill="rgba(238,154,166,0.12)" stroke="#f4b6c4" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 156 C28 122 38 92 60 40" fill="none"/>
+                <path d="M38 102 C50 98 62 90 74 70" fill="none"/>
+                <path d="M29 130 C20 118 15 104 14 90" fill="none"/>
+                <path d="M33 118 C45 118 53 110 55 100 C43 100 35 108 33 118Z"/>
+                <path d="M26 140 C14 140 6 132 6 122 C18 122 25 130 26 140Z"/>
+                <path d="M44 84 C54 86 62 80 64 70 C54 70 46 76 44 84Z"/>
+                <path d="M52 60 C42 58 36 50 36 42 C46 44 52 52 52 60Z"/>
+                <use href="#petalos" transform="translate(62 32) scale(1.3)"/>
+                <use href="#petalos" transform="translate(77 62)"/>
+                <use href="#petalos" transform="translate(14 82) scale(.9)"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <!-- Foto en grande -->
+    <div id="visor" class="visor oculto">
+        <button id="cerrar" class="visor-btn cerrar" aria-label="Cerrar">✕</button>
+        <div class="visor-contenido">
+            <img id="visor-img" alt="">
+            <div class="visor-texto">
+                <svg class="flor-grande" aria-hidden="true"><use href="#flor"/></svg>
+                <div class="visor-cuerpo">
+                    <p id="visor-frase"></p>
+                    <span class="visor-corazon">♡</span>
+                </div>
+                <span class="vh vh1">♡</span>
+                <span class="vh vh2">♥</span>
+                <svg class="flor-esquina" aria-hidden="true"><use href="#ramo"/></svg>
+            </div>
+        </div>
+        <div class="visor-nav">
+            <button id="visor-ant" class="visor-btn" aria-label="Foto anterior">←</button>
+            <button id="visor-sig" class="visor-btn" aria-label="Foto siguiente">→</button>
+        </div>
+    </div>
+
+    <audio id="cancion" src="../Musica/Musica.mpeg" loop></audio>
+    <script src="../jss/regalo.js"></script>
+</body>
+</html>
